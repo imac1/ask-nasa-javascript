@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="init.js" defer></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body
+    class="flex items-center justify-center min-h-screen bg-slate-100 bg-[url('https://wallpaper-mania.com/wp-content/uploads/2018/09/High_resolution_wallpaper_background_ID_77701911014.jpg')] bg-cover bg-center">
+
+    <div class="root" id="root">
+        <section class="date-picker p-8 glassmorphism text-white flex flex-row items-center justify-center gap-4 mb-6 max-sm:flex-wrap">
+            <div class="flex flex-col">
+                <h3>Start date</h3>
+                <input type=date step=7 min=2014-09-08
+                    class="appearance-none  bg-slate-200 p-4 rounded-md text-black ring ring-slate-600 hover:ring-red-500 hover:ring-offset-2 mt-4">
+            </div>
+            <div class="flex flex-col">
+                <h3>End date</h3>
+                <input type=date step=7 min=2014-09-08
+                    class="appearance-none outline-none  bg-slate-200 p-4 rounded-md text-black ring ring-slate-600 hover:ring-red-500 hover:ring-offset-2 mt-4">
+            </div>
+
+
+        </section>
+        <section class="container mx-auto p-8 glassmorphism text-white">
+            <ul class="flex flex-row gap-4 max-sm:flex-wrap ">
+                <li class="flex flex-row gap-2 group transition-all duration-300">
+                    <img src="" alt="" id="img" class="w-64 h-64 rounded-md shadow-lg ">
+                    <article class="hidden group-hover:block  ">
+                        <h1 class="font-bold text-3xl" id="title">title</h1>
+                        <div class="flex flex-row gap-3">
+                            <h2 class="text-xl" id="author">author</h2>
+                            <h2 class="text-xl" id="date">date</h2>
+                        </div>
+                        <div class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Error recusandae
+                            quos eveniet aliquam sequi, aut officia rerum et quia ullam earum, consequuntur tempore unde
+                            a iusto dolore nesciunt tempora reiciendis.</div>
+
+                    </article>
+                </li>
+                <li class="flex flex-row gap-2 group transition-all duration-300">
+                    <img src="" alt="" id="img" class="w-64 h-64 rounded-md shadow-lg ">
+                    <article class="hidden group-hover:block  ">
+                        <h1 class="font-bold text-3xl" id="title">title</h1>
+                        <div class="flex flex-row gap-3">
+                            <h2 class="text-xl" id="author">author</h2>
+                            <h2 class="text-xl" id="date">date</h2>
+                        </div>
+                        <div class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Error recusandae
+                            quos eveniet aliquam sequi, aut officia rerum et quia ullam earum, consequuntur tempore unde
+                            a iusto dolore nesciunt tempora reiciendis.</div>
+
+                    </article>
+                </li>
+                <li class="flex flex-row gap-2 group transition-all duration-300">
+                    <img src="" alt="" id="img" class="w-64 h-64 rounded-md shadow-lg ">
+                    <article class="hidden group-hover:block  ">
+                        <h1 class="font-bold text-3xl" id="title">title</h1>
+                        <div class="flex flex-row gap-3">
+                            <h2 class="text-xl" id="author">author</h2>
+                            <h2 class="text-xl" id="date">date</h2>
+                        </div>
+                        <div class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Error recusandae
+                            quos eveniet aliquam sequi, aut officia rerum et quia ullam earum, consequuntur tempore unde
+                            a iusto dolore nesciunt tempora reiciendis.</div>
+
+                    </article>
+                </li>
+            </ul>
+        </section>
+
+
+    </div>
+</body>
+
+</html>
