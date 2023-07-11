@@ -8,6 +8,7 @@ function fetchApodData(startDate, endDate) {
     .then(response => response.json())
     .then(data => {
       displayResults(data);
+	  toggleHiddenClass();
     })
     .catch(error => {
       console.error("Error fetching APOD data:", error);
@@ -30,7 +31,7 @@ function displayResults(data) {
     const li = document.createElement("li");
     li.innerHTML = `<li class="flex flex-row gap-2 group transition-all duration-300">
 	<img src="${apod.url}" alt="" id="img" class="w-64 h-64 rounded-md shadow-lg ">
-	<article class="hidden group-hover:block  ">
+	<article class="hidden ">
 	  <h1 class="font-bold text-3xl" id="title">${apod.title}</h1>
 	  <div class="flex flex-row gap-3">
 		<h2 class="text-xl" id="auth">${apod.copyright}</h2>
@@ -40,9 +41,13 @@ function displayResults(data) {
 	</article>
   </li>`;
     list.appendChild(li);
+
+
   });
 }
 
+
+  
 
 document.getElementById("start_date").addEventListener("change", function() {
   const startDate = this.value;
@@ -63,4 +68,20 @@ const today = new Date().toISOString().split("T")[0];
 document.getElementById("start_date").value = today;
 document.getElementById("end_date").value = today;
 
-fetchApodData(today, today);
+function toggleHiddenClass() {
+	const images = document.querySelectorAll('img');
+  
+	images.forEach(image => {
+	  image.addEventListener('click', () => {
+		const article = image.parentNode.querySelector('article');
+		console.log('article clicked' + (article));
+	
+		article.classList.toggle('hidden');
+	
+		
+	  });
+	});
+  }
+
+fetchApodData(today, today)
+
