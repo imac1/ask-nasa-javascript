@@ -9,6 +9,11 @@ border: 1px solid rgba( 255, 255, 255, 0.18 );
 
 }
 
+
+
+
+
+
 .slide-in-left {
 	-webkit-animation: slide-in-left 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 	        animation: slide-in-left 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
@@ -39,3 +44,4 @@ border: 1px solid rgba( 255, 255, 255, 0.18 );
     }
   }
   
+
