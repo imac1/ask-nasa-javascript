@@ -1,88 +1,66 @@
-function getAstroData() {
-	const apiKey = "LaOI5HBMpR8b96VO6UGGRek0TxzHNxtia1yff2bi";
-	// console.log(apiKey);
-	url =
-		"https://api.nasa.gov/planetary/apod?api_key=LaOI5HBMpR8b96VO6UGGRek0TxzHNxtia1yff2bi";
-	fetch(url)
-		.then((response) => {
-			return response.json();
-		})
-		.then((data) => {
-			let apodData = data;
-		
-			writeToday(apodData);
-			return apodData;
-		})
-		.catch(function (error) {
-			console.log(error);
-		});
+const apiKey = "LaOI5HBMpR8b96VO6UGGRek0TxzHNxtia1yff2bi";
+
+
+function fetchApodData(startDate, endDate) {
+  const url = `https://api.nasa.gov/planetary/apod?api_key=${apiKey}&start_date=${startDate}&end_date=${endDate}`;
+
+  fetch(url)
+    .then(response => response.json())
+    .then(data => {
+      displayResults(data);
+    })
+    .catch(error => {
+      console.error("Error fetching APOD data:", error);
+    });
 }
 
 
+function displayResults(data) {
+  const list = document.getElementById("list");
+  list.innerHTML = ""; 
 
+  if (data.length === 0) {
+    const li = document.createElement("li");
+    li.innerText = "No results found.";
+    list.appendChild(li);
+    return;
+  }
 
-function getStartDate() {
-	const start_date = document.getElementById("start_date");
-
-	start_date.addEventListener("change", () => {
-		console.log(start_date.value);
-		return start_date.value;
-	});
+  data.forEach(apod => {
+    const li = document.createElement("li");
+    li.innerHTML = `<li class="flex flex-row gap-2 group transition-all duration-300">
+	<img src="${apod.url}" alt="" id="img" class="w-64 h-64 rounded-md shadow-lg ">
+	<article class="hidden group-hover:block  ">
+	  <h1 class="font-bold text-3xl" id="title">${apod.title}</h1>
+	  <div class="flex flex-row gap-3">
+		<h2 class="text-xl" id="auth">${apod.copyright}</h2>
+		<h2 class="text-xl" id="date">${apod.date}</h2>
+	  </div>
+	  <div class="content" id="content">${apod.explanation}</div>
+	</article>
+  </li>`;
+    list.appendChild(li);
+  });
 }
 
-function getEndDate() {
-	const end_date = document.getElementById("end_date");
 
-	end_date.addEventListener("change", () => {
-		console.log(end_date.value);
-		return end_date.value;
-	});
-}
+document.getElementById("start_date").addEventListener("change", function() {
+  const startDate = this.value;
+  const endDate = document.getElementById("end_date").value;
 
-function getCurrentDate() { 
-	const date = new Date();
-	let day = date.getDate();
-	let month = date.getMonth()+1;
-	let year = date.getFullYear();
-	let currentDate = `${year}-${'0'+month}-${day}`;
-	console.log(currentDate);
-	return currentDate;
+  fetchApodData(startDate, endDate);
+});
+
+document.getElementById("end_date").addEventListener("change", function() {
+  const startDate = document.getElementById("start_date").value;
+  const endDate = this.value;
+
+  fetchApodData(startDate, endDate);
+});
 
 
-}
+const today = new Date().toISOString().split("T")[0];
+document.getElementById("start_date").value = today;
+document.getElementById("end_date").value = today;
 
-function writeToday(apodObj) {
-	if (apodObj) {
-		const list = document.getElementById('list');
-		const dailyHtml = ` <li class="flex flex-row gap-2 group transition-all duration-300">
-		<img src="${apodObj.url}" alt="" id="img" class="w-64 h-64 rounded-md shadow-lg ">
-		<article class="hidden group-hover:block  ">
-			<h1 class="font-bold text-3xl" id="title">${apodObj.title}</h1>
-			<div class="flex flex-row gap-3">
-				<h2 class="text-xl" id="auth">${apodObj.copyright}</h2>
-				<h2 class="text-xl" id="date">${apodObj.date}</h2>
-			</div>
-			<div class="content" id="content">${apodObj.explanation}</div>
-
-		</article>
-	</li>`
-	 return list.insertAdjacentHTML('afterbegin', dailyHtml)
-	} else {
-		return `please, check your API key validity`
-	}
-
-}
-
-function writeAllDays (apodObj, start_date, end_date) {
-
-
-}
-
-function main() {
-	getCurrentDate();
-	getAstroData();
-	getStartDate();
-	getEndDate();
-	writeToday();
-}
-main();
+fetchApodData(today, today);
