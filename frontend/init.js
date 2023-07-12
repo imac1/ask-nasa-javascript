@@ -41,13 +41,9 @@ function displayResults(data) {
 	</article>
   </li>`;
     list.appendChild(li);
-
-
   });
 }
 
-
-  
 
 document.getElementById("start_date").addEventListener("change", function() {
   const startDate = this.value;
@@ -74,11 +70,7 @@ function toggleHiddenClass() {
 	images.forEach(image => {
 	  image.addEventListener('click', () => {
 		const article = image.parentNode.querySelector('article');
-		console.log('article clicked' + (article));
-	
 		article.classList.toggle('hidden');
-	
-		
 	  });
 	});
   }
